@@ -1,0 +1,99 @@
+\documentclass[12pt]{ctexart}
+\usepackage{xeCJK}
+\usepackage{amsmath}
+\usepackage{amssymb} % Provides \mathcal and other math symbols
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{float}
+
+\begin{document}
+动力学上，中心力导致二维轨道运动。让我们先尝试在二维中量化这个问题。哈密顿量 $H=\frac{{P_{r}}^{2}}{2~m}+\frac{L^{2}}{2~m~r^{2}}-\frac{e}{r}。$
+
+没有方向角$\phi$这一维度，$L$是运动常数，具有量子化的值 $l$, 假设 $$<r|{p_{r}}^{2}=-\frac{\hbar^{2}}{r}\partial_{r}r\partial_{r}<r| = (-\hbar^{2})(\frac{1}{r}\partial_{r}+{\partial_{r}}^{2})<r|$$ 
+
+径向薛定谔方程： $$[(\frac{-\hbar^{2}}{2m})(\frac{1}{r}\partial_{r}+{\partial_{r}}^{2})+\frac{\hbar^{2}}{2~m}\frac{l^{2}}{r^{2}}-\frac{e}{r}-E]R(r)=0$$
+
+当 $r \rightarrow \infty$ 时，$P_{r}^{2}R\rightarrow 0$, $R \rightarrow e^{-\lambda r}$;  定义 $\lambda^{2}\equiv\frac{-2mE}{\hbar^{2}}$ (假设 $E<0$ 为束缚态)
+
+引入物理尺度：$\rho=\lambda r$
+
+用 $\rho$ 表示的径向方程： $(\partial_{\rho}^{2}+\frac{1}{\rho}\partial\rho-\frac{l^{2}}{\rho^{2}}+\frac{2me}{\hbar^{2}\lambda}\frac{1}{\rho}-1) R(\rho)=0$ 定义 $\gamma = \frac{me}{\hbar^{2}\lambda}$
+
+假设解的形式为 $\mathcal{R}(\rho)=e^{-\rho}f(\rho)$， 代入得到 $f(\rho)$ 的方程： $(f^{\prime\prime}(\rho)+(\frac{1}{\rho}-2)f^{\prime}(\rho) + (\frac{2\gamma-1}{\rho} - \frac{l^2}{\rho^2})f(\rho)) = 0$
+
+假设 $f(\rho)$ 的级数解形式为 $f(\rho)=\sum_{m=0}^{\infty} a_{m}\rho^{s+m}$
+
+代入级数解得到递推关系（未完全写出）： $\sum_{m}a_{m}[(s+m)(s+m-1)+(s+m)-l^{2}]\rho^{s+m-2}-\sum_{m}a_{m}[2(s+m)-(2\gamma-1)]\rho^{s+m-1}=0.$
+化简为：$$a_{m}=-\frac{2\gamma-(2l+1)-2(m-1)}{(s+m)^2-l^2}a_{m-1}$$
+
+分析最低阶的系数： $a_0[s(s-1)+s-l^2]=0 \Rightarrow s^{2}-l^{2}=0$。为了解在 $r=0$ 处行为良好，取 $s=l$ (假设 $l \ge 0$)。
+
+假设级数在 $m=m_{max}$ 处截断 (为了得到束缚态解)，即 $a_{m}=0$ for $m>m_{max}$。
+
+最高阶（或递推关系）给出截断条件，这要求 $\rho^{s+m_{max}-1}$ 项的系数满足 $2(s+m_{max}) - (2\gamma - 1) = 0$ (假设 $a_{m_{max}} \ne 0$ 且 $a_{m_{max}+1}=0$ )。 这导致 $\gamma=s+m_{max}+\frac{1}{2}$。
+
+能量 $E = \frac{-\hbar^{2}}{2~m}\lambda^{2}=\frac{-\hbar^{2}}{2~m}(\frac{m~e}{\hbar^{2}}\frac{1}{\gamma})^{2}=\frac{-me^{2}}{2~\hbar^{2}}\frac{1}{\gamma^{2}}$。这与实验拟合。 $\gamma$ 的可能值（对应 $s=l$ 和 $m_{max}=0, 1, 2, ...$）：$\gamma = l+m_{max}+1/2$。
+\section{作图}
+\textbf{假设角向波函数已归一化},所求的级数形式波函数应当有$$\int_{0}^{\infty}R^2(\rho)\rho d\rho=1$$
+\begin{table}[H]
+    \centering
+    \caption{Integration Result of Function $e^{-2x}x^n$}
+    \begin{tabular}{|l|l|} 
+    \hline
+    Function           & Value                            \\ 
+    \hline
+    $e^{-2x}x^{1}$ & $\frac{1}{4}$   \\
+   $ e^{-2x}x^{2}$ & $\frac{1}{4} $  \\
+   $ e^{-2x}x^{3} $& $\frac{3}{8} $  \\
+    $e^{-2x}x^{4} $ & $\frac{3}{4} $  \\
+   $ e^{-2x}x^{5}$ & $\frac{15}{8} $ \\
+    \hline
+    \end{tabular}
+    \end{table}
+1．基态 $\left(\boldsymbol{Y}=\mathbf{1 / 2}, \mathbf{I}=\mathbf{0}, m_{-} \max =0\right)$
+波函数：
+$$
+R_{1 / 2}(\rho)=2e^{-\rho}
+$$
+
+其中，$\rho=\frac{m e}{\hbar^2} \cdot \frac{2}{1} r$ ，对应能量 $E=-\frac{m e^2}{2 \hbar^2} \cdot 4=-\frac{2 m e^2}{\hbar^2}$ 。
+
+2．第一激发态 $(\boldsymbol{\gamma}=\mathbf{3 / 2})$
+$\mathrm{I}=0, \mathrm{~m}_{-} \max =1$
+波函数：
+$$
+R_{3 / 2}^{(0)}(\rho)=\frac{4}{17} e^{-\rho}(1-4 \rho)
+$$
+若$I=1, m_{-} \max =0$
+波函数：
+$$
+R_{3 / 2}^{(1)}(\rho)=\frac{8}{3} e^{-\rho} \rho
+$$
+
+能量均为 $E=-\frac{m e^2}{2 \hbar^2} \cdot \frac{4}{9}=-\frac{2 m e^2}{9 \hbar^2}$ 。
+
+3．第二激发态 $(\boldsymbol{\gamma}=\mathbf{5 / 2})$
+ $\mathbf{I}=\mathbf{0}, \mathbf{m}_{-} \max =\mathbf{2}$
+波函数：
+$$
+R_{5 / 2}^{(0)}(\rho)=\frac{8}{707} e^{-\rho}\left(1-6 \rho+9 \rho^2\right)
+$$
+$I=1, m_{-} \max =1$
+波函数：
+$$
+R_{5 / 2}^{(1)}(\rho)=\frac{24}{5} e^{-\rho} \rho\left(1-\frac{2}{3} \rho\right)
+$$
+ $\mathbf{I}=\mathbf{2}, \mathbf{m}_{-}$max $=\mathbf{0}$
+波函数：
+$$
+R_{5 / 2}^{(2)}(\rho)=\frac{8}{15} e^{-\rho} \rho^2
+$$
+
+能量均为 $E=-\frac{m e^2}{2 \hbar^2} \cdot \frac{4}{25}=-\frac{2 m e^2}{25 \hbar^2}$ 。
+
+
+\end{document}

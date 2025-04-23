@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{float}
+\begin{document}
+
+In dynamics, central forces lead to two-dimensional orbital motion. Let's first attempt to quantize this problem in two dimensions. The Hamiltonian is given by $H=\frac{P_r^2}{2m}+\frac{L^2}{2mr^2}-\frac{e}{r}$. 
+
+Without the azimuthal angle $\phi$ dimension, $L$ is a constant of motion with quantized value $l$. Assuming:
+$$\langle r|p_r^2 = -\frac{\hbar^2}{r}\partial_r r\partial_r \langle r| = (-\hbar^2)\left(\frac{1}{r}\partial_r + \partial_r^2\right)\langle r|$$
+
+The radial Schrödinger equation becomes:
+$$\left[\left(-\frac{\hbar^2}{2m}\right)\left(\frac{1}{r}\partial_r + \partial_r^2\right) + \frac{\hbar^2}{2m}\frac{l^2}{r^2} - \frac{e}{r} - E\right]R(r) = 0$$
+
+As $r \rightarrow \infty$, $P_r^2 R \rightarrow 0$, and $R \rightarrow e^{-\lambda r}$; define $\lambda^2 \equiv \frac{-2mE}{\hbar^2}$ (assuming $E<0$ for bound states).
+
+Introducing physical scaling: $\rho = \lambda r$.
+
+The radial equation in terms of $\rho$:
+$$\left(\partial_\rho^2 + \frac{1}{\rho}\partial_\rho - \frac{l^2}{\rho^2} + \frac{2me}{\hbar^2\lambda}\frac{1}{\rho} - 1\right)R(\rho) = 0$$
+Define $\gamma = \frac{me}{\hbar^2\lambda}$.
+
+Assuming a solution of the form $\mathcal{R}(\rho) = e^{-\rho}f(\rho)$, substitution yields the equation for $f(\rho)$:
+$$f''(\rho) + \left(\frac{1}{\rho} - 2\right)f'(\rho) + \left(\frac{2\gamma-1}{\rho} - \frac{l^2}{\rho^2}\right)f(\rho) = 0$$
+
+Assume a series solution $f(\rho) = \sum_{m=0}^\infty a_m \rho^{s+m}$. Substituting gives the recurrence relation:
+$$\sum_{m} a_m \left[(s+m)(s+m-1) + (s+m) - l^2\right]\rho^{s+m-2} - \sum_{m} a_m \left[2(s+m) - (2\gamma-1)\right]\rho^{s+m-1} = 0$$
+
+Simplifying to:
+$$a_m = -\frac{2\gamma - (2l+1) - 2(m-1)}{(s+m)^2 - l^2}a_{m-1}$$
+
+Analyzing the lowest-order coefficient: $a_0[s(s-1) + s - l^2] = 0 \Rightarrow s^2 = l^2$. For regular behavior at $r=0$, take $s=l$ (assuming $l \geq 0$).
+
+Assuming truncation at $m = m_{\text{max}}$ (to obtain bound states), the termination condition requires:
+$$2(s + m_{\text{max}}) - (2\gamma - 1) = 0 \Rightarrow \gamma = s + m_{\text{max}} + \frac{1}{2}$$
+
+Energy expression:
+$$E = -\frac{\hbar^2}{2m}\lambda^2 = -\frac{\hbar^2}{2m}\left(\frac{me}{\hbar^2}\frac{1}{\gamma}\right)^2 = -\frac{me^2}{2\hbar^2}\frac{1}{\gamma^2}$$
+
+Possible $\gamma$ values (with $s=l$ and $m_{\text{max}} = 0,1,2,...$):
+$$\gamma = l + m_{\text{max}} + \frac{1}{2}$$
+
+\section{Normalization}
+\textbf{Assuming angular wavefunctions are normalized}, the radial wavefunctions should satisfy:
+$$\int_0^\infty R^2(\rho)\rho d\rho = 1$$
+
+\begin{table}[H]
+    \centering
+    \caption{Integration Results for Functions $e^{-2x}x^n$}
+    \begin{tabular}{|l|l|}
+    \hline
+    Function & Value \\
+    
+    $e^{-2x}x^1$ & 1/4 \\
+    $e^{-2x}x^2$ & 1/4 \\
+    $e^{-2x}x^3$ & 3/8 \\
+    $e^{-2x}x^4$ & 3/4 \\
+    $e^{-2x}x^5$ & 15/8 \\
+    \hline
+    \end{tabular}
+\end{table}
+
+1. Ground State ($\gamma = \frac{1}{2}$, $l = 0$, $m_{\text{max}} = 0$)
+Wavefunction:
+$$R_{1/2}(\rho) = 2e^{-\rho}$$
+where $\rho = \frac{me}{\hbar^2} \cdot 2r$, corresponding to energy:
+$$E = -\frac{me^2}{2\hbar^2} \cdot 4 = -\frac{2me^2}{\hbar^2}$$
+
+2. First Excited State ($\gamma = \frac{3}{2}$)
+
+- Case 1: $l=0$, $m_{\text{max}}=1$
+Wavefunction:
+$$R_{3/2}^{(0)}(\rho) = \frac{2}{\sqrt{17}}e^{-\rho}(1 - 4\rho)$$
+- Case 2: $l=1$, $m_{\text{max}}=0$
+Wavefunction:
+$$R_{3/2}^{(1)}(\rho) = \frac{2\sqrt{2}}{\sqrt{3}}e^{-\rho}\rho$$
+Both cases share energy:
+$$E = -\frac{me^2}{2\hbar^2} \cdot \frac{4}{9} = -\frac{2me^2}{9\hbar^2}$$
+
+3. Second Excited State ($\gamma = \frac{5}{2}$)
+
+- Case 1: $l=0$, $m_{\text{max}}=2$
+Wavefunction:
+$$R_{5/2}^{(0)}(\rho) = \frac{2\sqrt{2}}{\sqrt{707}}e^{-\rho}(1 - 6\rho + 9\rho^2)$$
+- Case 2: $l=1$, $m_{\text{max}}=1$
+Wavefunction:
+$$R_{5/2}^{(1)}(\rho) = \frac{2\sqrt{6}}{\sqrt{5}}e^{-\rho}\rho\left(1 - \frac{2}{3}\rho\right)$$
+- Case 3: $l=2$, $m_{\text{max}}=0$
+Wavefunction:
+$$R_{5/2}^{(2)}(\rho) = \frac{2\sqrt{2}}{\sqrt{15}}e^{-\rho}\rho^2$$
+All cases share energy:
+$$E = -\frac{me^2}{2\hbar^2} \cdot \frac{4}{25} = -\frac{2me^2}{25\hbar^2}$$
+
+\end{document}
