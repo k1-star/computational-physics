@@ -1,0 +1,5 @@
+\begin{lstlisting}[language=Python]
+        for i in range(1, len(manyerror)):
+            if manyerror[i] == 0:
+                manyerror[i] = manyerror[i - 1]
+        \end{lstlisting}
